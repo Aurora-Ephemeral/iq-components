@@ -1,0 +1,42 @@
+{
+  "name": "iq-components",
+  "private": false,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/iq-components.umd.js",
+  "module": "./dist/iq-components.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/iq-components.es.js",
+      "require": "./dist/iq-components.umd.js"
+    }
+  },
+  "author": {
+    "name": "xu.lu",
+    "email": "xu.lu@gmail.com"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "dependencies": {
+    "element-plus": "^2.13.1",
+    "js-cookie": "^3.0.5",
+    "vue": "^3.5.13",
+    "vuedraggable": "^4.1.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.3",
+    "sass": "^1.97.3",
+    "vite": "^6.3.5",
+    "vite-plugin-externals": "^0.6.2",
+    "vite-plugin-libcss": "^1.1.2",
+    "vitepress": "^1.6.4",
+    "vitepress-theme-demoblock": "^3.1.3"
+  }
+}
