@@ -6,7 +6,7 @@ hero:
   name: "IQ Components"
   text: "A ui library for Vue 3"
   image:
-    src: /assets/logo.jpg
+    src: /logo.jpg
   actions:
     - theme: brand
       text: Quick Start

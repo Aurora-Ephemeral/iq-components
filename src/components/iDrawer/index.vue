@@ -11,7 +11,7 @@
         <div class="customer-drawer-head">
           <div class="customer-drawer-head-title">{{ title }}</div>
           <div>
-            <span class="drawer-head-icon mr10" @click="fullScreen">
+            <span class="drawer-head-icon" @click="fullScreen">
               <el-icon><FullScreen /></el-icon>
             </span>
             <span class="drawer-head-icon" @click="drawerClose">
@@ -58,7 +58,7 @@ const props = defineProps({
   },
   footerShow: {
     type: Boolean,
-    default: true,
+    default: false,
   }
 });
 const mySize = ref();
@@ -121,7 +121,7 @@ const fullScreen = () => {
     .drawer-head-icon {
       cursor: pointer;
       font-size: 18px;
-
+      margin-left: 8px;
       &:hover {
         color: #1890ff;
       }

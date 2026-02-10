@@ -1,7 +1,7 @@
 ---
 hello: world
 ---
-# iCard 
+# Card 
 ## Basic usage
 :::demo
 ```vue
@@ -13,9 +13,6 @@ hello: world
     </el-form>
   </i-card>
 </template>
-<script setup>
-import iCard from '../../src/components/iCard/index.vue'
-</script>
 ```
 :::
 
@@ -31,9 +28,6 @@ Customize the title area on the right via `titleRight` slot.
     </template>
   </i-card>
 </template>
-<script setup>
-import iCard from '../../src/components/iCard/index.vue'
-</script>
 ```
 :::
 ## API

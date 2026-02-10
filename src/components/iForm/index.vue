@@ -113,13 +113,13 @@
         :style="getBtnWidth(formList.length)"
         label=""
       >
-        <el-button color="#2B4458" @click="onSearch(formRef)">查询</el-button>
-        <el-button @click="onReset">重置</el-button>
+        <el-button type="primary" @click="onSearch(formRef)">{{iq_t('query')}}</el-button>
+        <el-button @click="onReset">{{iq_t('reset')}}</el-button>
         <el-tooltip
           v-if="showExpandBtn"
           effect="light"
           placement="bottom-start"
-          :content="expand ? '收起' : '展开'"
+          :content="expand ? iq_t('expand') : iq_t('collapse')"
         >
           <el-button @click="expandBtn">
             <el-icon :style="`transform:rotate(${!expand ? '90deg':'270deg'});`"
@@ -157,9 +157,11 @@ export default {
 </script>
 
 <script setup>
-import { ref, watch, computed } from 'vue'
+import { ref, watch, computed, inject } from 'vue'
 import { ElForm, ElFormItem, ElButton, ElSwitch, ElTooltip, ElIcon, ElInput, ElInputNumber, ElSelect, ElOption, ElDatePicker, ElCheckbox, ElCheckboxGroup, ElRadio, ElRadioGroup } from 'element-plus'
 import { DArrowRight } from '@element-plus/icons-vue'
+import { ConfigInjectKey } from '../iConfigProvider/context'
+import LangDict from './lang'
 import _ from 'lodash'
 
 const props = defineProps({
@@ -196,7 +198,10 @@ const props = defineProps({
   }
 })
 
-const emits = defineEmits(['handleSearch', 'handleReset', 'handleChangeEvent', 'update:modelValue'])
+const emits = defineEmits(['handleSearch', 'handleReset', 'handleSubmit', 'handleChangeEvent', 'update:modelValue'])
+
+const globalConfig = inject(ConfigInjectKey)
+console.log(globalConfig, 'globalConfig')
 
 // 表单项
 const formData = computed({
@@ -206,6 +211,10 @@ const formData = computed({
   set(){
     emits('update:modelValue', formData.value)
   }
+})
+// language
+const iq_t = computed(() => (key) => {
+  return LangDict[globalConfig?.value?.lang || 'en'][key] || key
 })
 const formList = ref([])
 const formRef = ref(null)
@@ -240,7 +249,7 @@ const onSearch = (formEl) => {
     if(!valid) {
       return 
     }
-    emits('handleSearch', formData.value)
+    props.formType === 'query' ? emits('handleSearch', formData.value) : emits('handleSubmit', formData.value)
   })
 }
 // 重置表单
@@ -342,9 +351,9 @@ const getPlaceholder = (row) => {
   let placeholder
   if (row.comp && typeof row.comp == 'string') {
     if (row.comp.includes('input')) {
-      placeholder = '请输入' + row.label
+      placeholder = iq_t.value('placeholder_input') + row.label
     } else if (row.comp.includes('select') || row.comp.includes('date')) {
-      placeholder = '请选择' + row.label
+      placeholder = iq_t.value('placeholder_select') + row.label
     } else {
       placeholder = row.label
     }

@@ -85,6 +85,9 @@ export default {
 <style lang="scss" scoped>
 .myDialog {
   color: red;
+  :deep(.el-dialog) {
+    padding: 0px;
+  }
   :deep(.el-dialog__header) {
     margin-right: 0;
     background-color: #F0F2F5;
@@ -111,6 +114,9 @@ export default {
   :deep(.el-dialog__footer) {
     padding: 0
   }
+  :deep(.el-dialog__body) {
+    padding: 8px 16px;
+  }
 
   .dialog-main {
     width: 100%;
@@ -124,7 +130,8 @@ export default {
     .btn{
       border-radius: 4px;
       height: 32px;
-      width: 60px;
+      minWidth: 60px;
+      width: fit-content;
     }
   }
 }
