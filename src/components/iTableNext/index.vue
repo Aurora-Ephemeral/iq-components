@@ -7,16 +7,16 @@
       <div class="i-table-header-right">
         <slot name="header-right"></slot>
         <div v-if="toolButton" class="default-button-wrapper">
-          <el-tooltip v-if="toolButton === true || toolButton.includes('refresh')" content="刷新" effect="light">
+          <el-tooltip v-if="toolButton === true || toolButton.includes('refresh')" :content="iq_t('refresh')" effect="light">
             <el-icon @click="handleRefreshData"><RefreshRight /></el-icon>
           </el-tooltip>
-          <el-tooltip content="导出" effect="light" v-if="toolButton === true || toolButton.includes('download')">
+          <el-tooltip :content="iq_t('export')" effect="light" v-if="toolButton === true || toolButton.includes('download')">
             <el-icon @click="handleExport"><Download /></el-icon>
           </el-tooltip>
-          <el-tooltip content="已选" v-if="selectionMode !== 'none'" effect="light">
+          <el-tooltip :content="iq_t('selected')" v-if="selectionMode !== 'none'" effect="light">
             <el-icon @click="handleOpenSelectionModal"><Check /></el-icon>
           </el-tooltip>
-          <el-tooltip content="列定义" effect="light" v-if="toolButton === true || toolButton.includes('setting')">
+          <el-tooltip :content="iq_t('colDef')" effect="light" v-if="toolButton === true || toolButton.includes('setting')">
             <el-icon ref="setupBtnRef"><Setting /></el-icon>
           </el-tooltip>
         </div>
@@ -87,7 +87,7 @@
             align="center"
             fixed="left"
             width="80"
-            label="序号"
+            :label="iq_t('index')"
           >
             <template #default="scope">
               <slot name="index" v-bind="scope">
@@ -149,8 +149,8 @@
                     v-model="tableSearchForm.filter[column.property]"
                     :format="item.filterDateFormat || 'YYYY-MM-DD'"
                     :value-format="item.filterDateFormat || 'YYYY-MM-DD'"
-                    start-placeholder="开始日期"
-                    end-placeholder="结束日期"
+                    :start-placeholder="iq_t('startDate')"
+                    :end-placeholder="iq_t('endDate')"
                     :teleported="false"
                     type="daterange"
                   />
@@ -159,7 +159,7 @@
                     multiple
                     collapse-tags
                     v-model="tableSearchForm.filter[column.property]"
-                    :placeholder="`请选择${item.label}`"
+                    :placeholder="`${iq_t('placeholder_select')}${item.label}`"
                   >
                     <el-option 
                       v-for="option in item.filterOptions" 
@@ -171,25 +171,25 @@
                   <div v-else-if="item.filterType === 'number'" class="i-table__number-filter_group">
                     <div class="i-table__number-filter_group-item">
                       <span> {{ '>' }} </span>
-                      <el-input-number v-model="tableSearchForm.filter[column.property].gt" placeholder="大于" :controls="false" />
+                      <el-input-number v-model="tableSearchForm.filter[column.property].gt" :placeholder="iq_t('greater')" :controls="false" />
                     </div>
                     <div class="i-table__number-filter_group-item">
                       <span> {{ '<' }} </span>
-                      <el-input-number v-model="tableSearchForm.filter[column.property].lt" placeholder="小于" :controls="false"/>
+                      <el-input-number v-model="tableSearchForm.filter[column.property].lt" :placeholder="iq_t('smaller')" :controls="false"/>
                     </div>
                     <div class="i-table__number-filter_group-item">
                       <span> = </span>
-                      <el-input-number v-model="tableSearchForm.filter[column.property].eq" placeholder="等于" :controls="false"/>
+                      <el-input-number v-model="tableSearchForm.filter[column.property].eq" :placeholder="iq_t('equal')" :controls="false"/>
                     </div>
                     <div class="i-table__number-filter_group-item">
                       <span> != </span>
-                      <el-input-number v-model="tableSearchForm.filter[column.property].ne" placeholder="不等于" :controls="false"/>
+                      <el-input-number v-model="tableSearchForm.filter[column.property].ne" :placeholder="iq_t('notEqual')" :controls="false"/>
                     </div>
                   </div>
                   <el-input 
                     v-else 
                     v-model="tableSearchForm.filter[column.property]"
-                    :placeholder="`请输入${item.label}`"
+                    :placeholder="`${iq_t('placeholder_input')}${item.label}`"
                     clearable 
                   >
                     <template #prefix>
@@ -217,7 +217,7 @@
                 <el-select 
                   v-if="item.inlineEditType === 'select'"
                   v-model="scope.row[scope.column.property]"
-                  :placeholder="`请选择${item.label}`"
+                  :placeholder="`${iq_t('placeholder_select')}${item.label}`"
                   clearable
                   style="width: 100%;"
                   v-bind="typeof item.inlineEditProps === 'function' ? item.inlineEditProps(scope.row) : item.inlineEditProps"
@@ -236,13 +236,13 @@
                   format="YYYY-MM-DD"
                   type="date"
                   style="width: 100%;"
-                  :placeholder="`请选择${item.label}`"
+                  :placeholder="`${iq_t('placeholder_select')}${item.label}`"
                   v-bind="typeof item.inlineEditProps === 'function' ? item.inlineEditProps(scope.row) : item.inlineEditProps"
                 />
                 <el-input-number 
                   v-else-if="item.inlineEditType === 'number'"
                   v-model="scope.row[scope.column.property]"
-                  :placeholder="`请输入${item.label}`"
+                  :placeholder="`${iq_t('placeholder_input')}${item.label}`"
                   controls-position="right"
                   style="width: 100%;"
                   v-bind="typeof item.inlineEditProps === 'function' ? item.inlineEditProps(scope.row) : item.inlineEditProps"
@@ -250,7 +250,7 @@
                 <el-input 
                   v-else
                   v-model="scope.row[scope.column.property]"
-                  :placeholder="`请输入${item.label}`"
+                  :placeholder="`${iq_t('placeholder_input')}${item.label}`"
                   v-bind="typeof item.inlineEditProps === 'function' ? item.inlineEditProps(scope.row) : item.inlineEditProps"
                 />
               </div>
@@ -265,9 +265,9 @@
     <div class="i-pagination-wrapper" v-if="pagination">
       <div class="i-pagination-info">
         <el-icon color="#409eff"><InfoFilled /></el-icon>
-        <span>共{{ total }}条</span>
-        <span v-if="selectionMode !== 'none'">已选{{ selectedRows.length }}条</span>
-        <el-button v-if="selectedRows.length > 0" link type="primary" @click="handleClearSelections">清空</el-button>
+        <span>{{`${iq_t('total')} ${total} ${iq_t('item')}` }}</span>
+        <span v-if="selectionMode !== 'none'">{{ `${iq_t('selected')} ${selectedRows.length} ${iq_t('item')}`  }}</span>
+        <el-button v-if="selectedRows.length > 0" link type="primary" @click="handleClearSelections">{{  iq_t('clear') }}</el-button>
       </div>
       <div style="display: flex; align-items: center; justify-content: flex-end">
         <el-pagination 
@@ -286,7 +286,7 @@
           @change="handlePageSizeChange"
         >
           <el-option v-for="size in pagination.pageSizeOptions" :key="size" :value="size">
-            {{ `${size}/页`}}
+            {{ `${size}/${iq_t('page')}` }}
           </el-option>
         </el-select>
       </div>
@@ -387,10 +387,13 @@
 </template>
 <script setup>
 import { Download, Setting, RefreshRight, Check, InfoFilled, CaretTop, CaretBottom, Filter, Search, CircleClose,More } from "@element-plus/icons-vue";
-import { computed, ref, watchEffect, nextTick, reactive, watch, useAttrs, onMounted } from "vue";
+import { computed, ref, watchEffect, nextTick, reactive, watch, useAttrs, onMounted, inject } from "vue";
 import draggable from 'vuedraggable'
 import { ElTable, ElTableColumn, ElButton, ElPopover, ElCheckbox, ElDialog, ElIcon, ElSelect, ElOption, ElInput } from "element-plus";
 import * as XLSX from 'xlsx';
+import LangDict from './lang'
+import { ConfigInjectKey } from '../iConfigProvider/context'
+
 const props = defineProps({
   // 表格数据
   tableData: {
@@ -446,6 +449,8 @@ const props = defineProps({
 
 const emit = defineEmits(['paginationChange', 'selectionChange', 'dragSortChange', 'refresh'])
 
+const globalConfig = inject(ConfigInjectKey)
+
 const currentPage = ref(props.pagination?.pageNum || 1)
 
 const attrs = useAttrs()
@@ -478,6 +483,10 @@ const tableRef = ref(null)
 const fixedLeftColumns = ref([])
 const fixedRightColumns = ref([])
 const normalColumns = ref([])
+// language
+const iq_t = computed(() => (key) => {
+  return LangDict[globalConfig?.value?.lang || 'en'][key] || key
+})
 const displayDataColumns = computed(() => {
   return displayColumns.value.filter(item => !item.slotName)
 })
@@ -799,7 +808,7 @@ defineExpose({
 
 <script>
 export default {
-  name: 'i-table-next',
+  name: 'i-table',
 }
 </script>
 <style lang="scss" scoped>

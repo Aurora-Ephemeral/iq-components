@@ -201,7 +201,7 @@ const props = defineProps({
 const emits = defineEmits(['handleSearch', 'handleReset', 'handleSubmit', 'handleChangeEvent', 'update:modelValue'])
 
 const globalConfig = inject(ConfigInjectKey)
-console.log(globalConfig, 'globalConfig')
+
 
 // 表单项
 const formData = computed({

@@ -1,0 +1,40 @@
+export default {
+    zh: {
+        placeholder_input: '请输入',
+        placeholder_select: '请选择',
+        index: '序号',
+        refresh: '刷新',
+        export: '导出',
+        selected: '已选择',
+        colDef: '列配置',
+        greater: '大于',
+        smaller: '小于',
+        equal: '等于',
+        notEqual: '不等于',
+        total: '共',
+        item: '条',
+        page: '页',
+        startDate: '开始日期',
+        endDate: '结束日期',
+        clear: '清空'
+    },
+    en: {
+        placeholder_input: 'Please input ',
+        placeholder_select: 'Please select ',
+        index: 'Index',
+        refresh: 'Refresh',
+        export: 'Export',
+        selected: 'Selected',
+        colDef: 'Column Config',
+        greater: 'Greater',
+        smaller: 'Smaller',
+        equal: 'Equal',
+        notEqual: 'Not Equal',
+        total: 'Total',
+        item: 'Items',
+        page: 'Page',
+        startDate: 'Start Date',
+        endDate: 'End Date',
+        clear: 'Clear'
+    }
+}
