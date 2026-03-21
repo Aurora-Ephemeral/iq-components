@@ -367,18 +367,18 @@
       </div>
     </el-popover>
     <el-dialog
-      title="已选数据"
+      :title="iq_t('selectedData')"
       v-model="showCart"
       width="960px"
     >
       <el-table
         :data="selectedRows"
       >
-        <el-table-column type="index" label="序号" width="80" />
+        <el-table-column type="index" :label="iq_t('index')" width="80" />
         <el-table-column v-for="column in displayDataColumns" :key="column.prop" :prop="column.prop" :label="column.label" show-overflow-tooltip />
-        <el-table-column label="操作" width="80" fixed="right" >
+        <el-table-column :label="iq_t('operation')" width="100" fixed="right" >
           <template #default="{row, index}">
-            <el-button type="danger" link @click="handleClearSelectedRow(index)">删除</el-button>
+            <el-button type="danger" link @click="handleClearSelectedRow(index)">{{  iq_t('delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -522,6 +522,9 @@ const handleOpenSelectionModal = () => {
 const handleClearSelectedRow = (index) => {
   const removeSelectedRow = selectedRows.value.splice(index, 1)[0]
   tableRef.value.toggleRowSelection(removeSelectedRow, false)
+  if(selectedRowKey.value) {
+    selectedRowKey.value = ''
+  }
   emit('selectionChange', selectedRows.value)
 }
 
@@ -552,6 +555,8 @@ const handleSingleSelection = (row) => {
   if(row.__selectionDisabled) {
     return
   }
+  selectedRowKey.value = row[props.rowKey] || ''
+  console.log('run here33', selectedRowKey.value)
   handleSelectionChange([row])
 }
 // 清空选中行

@@ -16,7 +16,9 @@ export default {
         page: '页',
         startDate: '开始日期',
         endDate: '结束日期',
-        clear: '清空'
+        clear: '清空',
+        delete: '删除',
+        selectedData: '已选择的数据'
     },
     en: {
         placeholder_input: 'Please input ',
@@ -35,6 +37,8 @@ export default {
         page: 'Page',
         startDate: 'Start Date',
         endDate: 'End Date',
-        clear: 'Clear'
+        clear: 'Clear',
+        delete: 'Delete',
+        selectedData: 'Selected Data'
     }
 }

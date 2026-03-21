@@ -435,8 +435,322 @@ the column definition function is enabled by the `toolButton` attribute containi
 :::
 
 ## Index Column
+- `indexConfig` controls the visibilty of the index column, the default value is `{ display: true, mode: 'continuous', width: 100 }`, where `mode` can be set to `discrete` to make the index column non-continuous after pagination.
 
+- The `index` slot can be used to customize the index column.
+
+:::demo
+```vue
+  <template>
+    <i-table 
+      :tableData="data"
+      :columns="columns"
+      :pagination="pagination"
+      :total="pagination.total"
+    >
+      <template #index="{$index}">
+        <el-tag>{{ `No.${$index+1}` }}</el-tag>
+      </template>
+    </i-table>
+  </template>
+  <script setup>
+    import { reactive } from 'vue'
+    const data = reactive([
+      {
+        id: 1,
+        name: 'San Zhang',
+        age: 20,
+        sex: 'Male',
+        province: 'Peking',
+        city: 'Peking',
+        street: 'Chaoyang District',
+        number: '100',
+        birth: '1990-01-01',
+      },
+      {
+            "id": 2,
+            "name": "Si Li",
+            "age": 25,
+            "sex": "Female",
+            "province": "Peking",
+            "city": "Peking",
+            "street": "Haidian District",
+            "number": "205",
+            "birth": "1995-05-15",
+        },
+        {
+            "id": 3,
+            "name": "Wu Wang",
+            "age": 30,
+            "sex": "Male",
+            "province": "Tianjin",
+            "city": "Tianjin",
+            "street": "Binhai New Area",
+            "number": "308",
+            "birth": "1990-11-30",
+            "__selectionDisabled": false
+        },
+        {
+            "id": 4,
+            "name": "Ming Zhao",
+            "age": 28,
+            "sex": "Female",
+            "province": "Hebei",
+            "city": "Shijiazhuang",
+            "street": "Chang'an District",
+            "number": "150",
+            "birth": "1992-08-22",
+            "__selectionDisabled": true
+        },
+        {
+            "id": 5,
+            "name": "Lei Liu",
+            "age": 35,
+            "sex": "Male",
+            "province": "Peking",
+            "city": "Peking",
+            "street": "Fengtai District",
+            "number": "501",
+            "birth": "1985-12-10",
+            "__selectionDisabled": false
+        }
+    ])
+    const columns = [
+      {
+        label: 'Name',
+        prop: 'name',
+        width: 100,
+        showFilter: true,
+        showSort: true
+      },
+      {
+        label: 'Age',
+        prop: 'age',
+        width: 100,
+        showFilter: true,
+        showSort: true,
+        filterType: 'number',
+      },
+      {
+        label: 'Gender',
+        prop: 'sex',
+        width: 100,
+        showFilter: true,
+        showSort: true,
+        filterType: 'select',
+        filterOptions: [
+            { label: 'Male', value: 'Male' },
+            { label: 'Female', value: 'Female' }
+        ]
+      },
+      {
+        label: 'Birth Date',
+        prop: 'birth',
+        width: 140,
+        showFilter: true,
+        showSort: true,
+      },
+      {
+        label: 'Province',
+        prop: 'province',
+        width: 120,
+        showFilter: true,
+        showSort: true,
+      }
+    ]
+
+    const pagination = {
+      pageNum: 1, 
+      pageSize: 10,
+      pageSizeOptions: [10, 20, 30, 50, 100],
+      total: data.length
+    }
+  </script>
+```
+:::
 ## Row Selection 
+- `rowKey` should be set to a unique identifier for each row, when the row selection function is enabled.
+
+- The `selectable` field can be used to disable the selection of a row. The `selectable` field is a function that returns `true/false` to control whether a row can be selected.
+
+### Multiple Selection
+Configure `selectionMode = 'multiple'` to enable multiple selection. When multiple selection is enabled, the function button for displaying selected data will appear in the upper right corner of the table.
+
+### Single Selection
+Configure `selectionMode = 'single'` to enable single selection.
+
+### Default Selected Rows
+Call the `toggleRowSelection` method of the table ref object to set the initial default selected rows. You can pass the second parameter as `true/false` to control whether the row is selected or not.
+
+### Get Selected Data
+You can get the current selected data by the `selectedRows` attribute of the table ref object. You can bind the `selectionChange` event to get the current selected data when the row selection status changes.
+
+:::demo
+```vue
+<template>
+    <div>
+      <el-switch 
+        v-model="selectionMode" 
+        active-text="Single"
+        active-value="single"
+        inactive-value="multiple" 
+        inactive-text="Multiple"  
+      >
+      </el-switch>
+      <i-table
+        ref="tableRef"
+        :tableData="data"
+        :columns="columns"
+        :pagination="pagination"
+        :total="pagination.total"
+        :selectionMode="selectionMode"
+        :selectable="checkSelectable"
+        @selectionChange="handleSelectionChange"
+        rowKey="id"
+      >
+        <template #header-left>
+          <el-button type="primary" @click="handleConfirm">Submit</el-button>
+        </template>
+      </i-table>
+    </div>
+  </template>
+  <script setup>
+    import { ref, reactive } from 'vue'
+    import { ElMessage } from 'element-plus'
+    const selectionMode = ref('single')
+    const tableRef = ref(null)
+    const data = reactive([
+      {
+        id: 1,
+        name: 'San Zhang',
+        age: 20,
+        sex: 'Male',
+        province: 'Peking',
+        city: 'Peking',
+        street: 'Chaoyang District',
+        number: '100',
+        birth: '1990-01-01',
+      },
+      {
+            id: 2,
+            "name": "Si Li",
+            "age": 25,
+            "sex": "Female",
+            "province": "Peking",
+            "city": "Peking",
+            "street": "Haidian District",
+            "number": "205",
+            "birth": "1995-05-15",
+        },
+        {
+            "id": 3,
+            "name": "Wu Wang",
+            "age": 30,
+            "sex": "Male",
+            "province": "Tianjin",
+            "city": "Tianjin",
+            "street": "Binhai New Area",
+            "number": "308",
+            "birth": "1990-11-30",
+        },
+        {
+            "id": 4,
+            "name": "Ming Zhao",
+            "age": 28,
+            "sex": "Female",
+            "province": "Hebei",
+            "city": "Shijiazhuang",
+            "street": "Chang'an District",
+            "number": "150",
+            "birth": "1992-08-22",
+        },
+        {
+            "id": 5,
+            "name": "Lei Liu",
+            "age": 35,
+            "sex": "Male",
+            "province": "Peking",
+            "city": "Peking",
+            "street": "Fengtai District",
+            "number": "501",
+            "birth": "1985-12-10",
+        }
+    ])
+    const columns = [
+      {
+        label: 'Name',
+        prop: 'name',
+        width: 100,
+        showFilter: true,
+        showSort: true
+      },
+      {
+        label: 'Age',
+        prop: 'age',
+        width: 100,
+        showFilter: true,
+        showSort: true,
+        filterType: 'number',
+      },
+      {
+        label: 'Gender',
+        prop: 'sex',
+        width: 100,
+        showFilter: true,
+        showSort: true,
+        filterType: 'select',
+        filterOptions: [
+            { label: 'Male', value: 'Male' },
+            { label: 'Female', value: 'Female' }
+        ]
+      },
+      {
+        label: 'Birth Date',
+        prop: 'birth',
+        width: 140,
+        showFilter: true,
+        showSort: true,
+      },
+      {
+        label: 'Province',
+        prop: 'province',
+        width: 120,
+        showFilter: true,
+        showSort: true,
+      }
+    ]
+
+    const pagination = {
+      pageNum: 1, 
+      pageSize: 10,
+      pageSizeOptions: [10, 20, 30, 50, 100],
+      total: data.length
+    }
+    const checkSelectable = (row, index) => {
+      // set first row not selectable
+      if(index === 0) {
+        return false
+      }
+      return true
+    }
+
+    const handleSelectionChange = (val) => {
+      ElMessage.success(`The selected user names are：${val.map(item=>item.name).join(',')}`)
+    }
+
+    const handleConfirm =() => {
+      // 从ref中 获取所有选中行数据
+      const selectedRows = tableRef.value.selectedRows
+      if(selectedRows.length === 0) {
+        ElMessage.warning('Please select at least one row')
+        return
+      }
+      ElMessage.success(`The selected user names are：${selectedRows.map(item=>item.name).join(',')}`)
+    }
+  </script>
+```
+:::
+
 
 ## Custmized Content
 
