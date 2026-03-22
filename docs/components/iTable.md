@@ -1805,4 +1805,4 @@ The `paginationChange` event can be used to monitor pagination changes, which is
 | :---: | :---: | :---: |
 | selectedRows | attr | selected rows |
 | toggleRowSelection | method | toggle the selection status of rows |
-| clearSelection | method | clear current selected rows |
+| clearSelection | method | clear current selected rows|
