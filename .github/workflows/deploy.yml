@@ -1,0 +1,34 @@
+name: Deploy to Tencent Cloud
+
+on:
+  push:
+    branches:
+      - main  # 监听 main 分支的点火
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22' # 根据你的项目修改版本
+
+    - name: Install and Build
+      run: |
+        npm install
+        npm run docs:build
+
+    - name: Deploy to Server
+      uses: easingthemes/ssh-deploy@main
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        REMOTE_HOST: ${{ secrets.SERVER_IP }}
+        REMOTE_USER: ${{ secrets.SERVER_USER }}
+        SOURCE: "docs/.vitepress/dist/"  # 你的打包结果目录
+        TARGET: "/opt/dist" # 服务器目标文件夹路径
+        ARGS: "-rlgoDzvc -i --delete" # rsync 参数，--delete 会删除服务器上多余的文件
