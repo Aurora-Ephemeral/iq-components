@@ -30,8 +30,8 @@ Designed to solve pain points in the development of enterprise-level application
 
 ## 📦 Install
 ```bash
-npm install @qms/qms-components --registry=https://nexus.faw-vw.in
+npm install iq-components --registry=https://nexus.faw-vw.in
 ```
 
 ## 📝 Documentation
-[Documentation](http://81.70.34.103:30080/)
+[Documentation](https://iq-components.cn/)
