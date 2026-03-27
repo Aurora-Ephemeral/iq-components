@@ -11,7 +11,7 @@ import { setTokenKeyName } from '../../utils'
 const props = defineProps({
   lang: {
     type: String,
-    default: 'zh'
+    default: 'en'
   },
   theme: {
     type: String,

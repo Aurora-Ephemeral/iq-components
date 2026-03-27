@@ -1,137 +1,98 @@
-# 更新日志
-## 🌈 v0.0.38 <span class="latest">Latest</span>
-### 🎉 优化
-- `iTableNext`组件列筛选功能增加精确匹配和模糊匹配选项
-- `iConfigForm` `iForm`组件增加回车搜索功能
-### 🐞 修复
-- 修复`iCard`组件标题与图标未对齐问题
-## 🌈 v0.0.36
-### 🚀 新增
-- 新增`iConfigProvider`组件
-### 🎉 优化
-- `iSelectVehicle`增加按照id模糊搜索功能
-## 🌈 v0.0.34
-### 🚀 新增
-- 新增`iSelectDept`组件
-### 🎉 优化
-- `iConfigForm`增加iConfigSelect配置项
-## 🌈 v0.0.33 
-### 🚧 重构
-- 重构`iDatePicker`组件，修复组件对element plus 版本依赖变化产生的报错
-## 🌈 v0.0.32 
+# Changelog
+## 🌈 v0.0.19 <span class="latest">Latest</span>
+### 🎉 Enhancements
+- Added exact match and fuzzy match options for column filtering in `iTable` component
+- Added press Enter to search in `iForm` components
+### 🐞 Bug Fixes
+- Fixed title and icon misalignment in `iCard` component
+## 🌈 v0.0.18
+### 🚀 New Features
+- Added `iConfigProvider` component
 
-### 🎉 优化
-- `iTableNext`组件增加行拖拽排序功能
-- `iConfigSelect` 组件增加最大选项显示数量及附加查询条件字段
-
-## 🌈 v0.0.31 
-
-### 🚀 新增
-- 新增iLayout组件
-### 🎉 优化
-- iSelect系组件（iSelectPerson, iSelectPart, iSelectVehicleModel, iSelectMaterialGroup, iConfigSelect）增加筛选结果搜索关键字匹配高亮
-- iTableNext 组件列筛选增加number和daterange类型
-- iTableNext 单行省略增加省略号
-### 🐞 修复
-- 修复iTableNext组件在列明过长时，行定义列超出显示问题
-## 🌈 v0.0.30 
-### 🚧 重构
-- 重构iCalendar组件，减少打包体积
-
-## 🌈 v0.0.29 
-### 🚀 新增
-- 新增iConfigForm组件
-
-### 🎉 优化
-- iTableNext组件已选数据弹框增加单行省略 
-
-## 🌈 v0.0.28
-
-### 🎉 优化
-- iTableNext增加扩展列功能
-## 🌈 v0.0.27
-### 🚀 新增
-- 增加 iTableNext, iStepProgress 组件
-### 🎉 优化
-- iDialog 增加showFooter字段，可不展示底部操作区
-## 🌈 v0.0.26
-### 🎉 优化
-- 增加组件按需引入功能
-## 🌈 v0.0.25
-### 🐞 修复
-- 修复iTable组件分页参数不生效问题
-## 🌈 v0.0.24
-### 🐞 修复
-- 修复iSelectPerson绑定数据为String类型不回显的问题 
-
-## 🌈 v0.0.23
-### 🐞 修复
-- 修复iTable拖拽排序不生效的问题 
-
-## 🌈 v0.0.22
-### 🚀 新增
-- iTable增加拖拽排序功能
-### 🐞 修复
-- 修复iTable分页组件触发多次请求bug
-
-## 🌈 v0.0.21 
-### 🎉 优化
-- iTable组件支持a.b.c格式传参
-- 进一步优化组件样式污染应用系统问题
-
-### 🐞 修复
-- 修复iSelectVehicleModel组件在多选下change回调不可用
-
-## 🌈 v0.0.20 
-
-### 🎉 优化
-- iTable组件增加国际化
-- iDialog组件添加默认按钮button文本参数
-
-## 🌈 v0.0.19 
-
-### bug修复
-- 修复iConfigSelect iCollapse无法引用问题
-
-### 🎉 优化
-- iConfigSelect 组件宽度默认100%
+## 🌈 v0.0.17
+### 🚧 Refactor
+- Refactored `iDatePicker` component to fix errors caused by Element Plus version dependency changes
 ## 🌈 v0.0.16
 
-### 🐞 修复
-- 修复组件样式对引用系统污染的问题 
-### 🎉 优化
-- iTable组件与应用系统解耦：不再需要传递baseUrl参数
-## 🌈 v0.0.14 
-### 🎉 优化
-- select person 组件增加科室信息展示
-## 🌈 v0.0.13 
+### 🎉 Enhancements
+- Added row drag-and-drop sorting to `iTable` component
 
-### 🚀 新增
-- 新增收缩卡片组件 iCollapse
-- 新增配置下拉选择组件 iConfigSelect
+## 🌈 v0.0.15
+### 🚀 New Features
+- Added `iLayout` component
+### 🎉 Enhancements
+- Added number and daterange types for column filtering in `iTable`
+- Added ellipsis for single-line text overflow in `iTable`
+### 🐞 Bug Fixes
+- Fixed column overflow display issue in `iTable` when column names are too long
+## 🌈 v0.0.14
+### 🚧 Refactor
+- Refactored `iCalendar` component to reduce bundle size
 
-### 🎉 优化
-- select person 组件回显改为域账号
+## 🌈 v0.0.13
+### 🎉 Enhancements
+- Added single-line ellipsis to selected data dialog in `iTable`
 
-### 🐞 修复
-- 修复下拉模式下 select person组件无法回显域账号问题
-## 🌈 v0.0.12 
+## 🌈 v0.0.12
+### 🎉 Enhancements
+- Added expandable column feature to `iTable`
 
-### 🎉 优化
-- 优化form组件校验提示信息显示不全问题
-## 🌈 v0.0.11 
-### 🎉 优化
- - table组件插槽支持element-plus的默认插槽的全部属性
-### 🐞 修复
- - select person，select vehicle等选择组件修复disabled为true时，仍然可以点击的问题
+## 🌈 v0.0.11
+### 🚀 New Features
+- Added `iStepProgress` components
+### 🎉 Enhancements
+- Added showFooter prop to `iDialog` to optionally hide the footer action area
 
 ## 🌈 v0.0.10
-### 🚀 新增
- - select person 组件新增下拉选择框交互模式，支持多选
+### 🐞 Bug Fixes
+- Fixed pagination parameters not taking effect in `iTable` component
+
 
 ## 🌈 v0.0.9
-### 🚀 新增
-  - 新增选择材料组组件 select material group
+### 🐞 Bug Fixes
+- Fixed drag-and-drop sorting not working in `iTable`
+
+## 🌈 v0.0.8
+### 🚀 New Features
+- Added drag-and-drop sorting to `iTable`
+### 🐞 Bug Fixes
+- Fixed `iTable` pagination component triggering multiple requests
+
+## 🌈 v0.0.7
+### 🎉 Enhancements
+- `iTable` component now supports a.b.c format for parameter passing
+- Further optimized component style pollution on host applications
+
+
+## 🌈 v0.0.6
+### 🎉 Enhancements
+- Added multi language function
+- Added default button text parameter to `iDialog` component
+
+## 🌈 v0.0.5
+### 🐞 Bug Fixes
+- Fixed component styles polluting host application styles
+### 🎉 Enhancements
+- Decoupled `iTable` component from host application: baseUrl parameter is no longer required
+
+
+## 🌈 v0.0.4
+
+### 🚀 New Features
+- Added collapsible card component `iCollapse`
+
+
+## 🌈 v0.0.3
+### 🎉 Enhancements
+- Fixed form component validation messages being truncated in `iForm`
+
+## 🌈 v0.0.2
+### 🎉 Enhancements
+ - `iTable` component slots now support all default slot attributes from Element Plus
+
+## 🌈 v0.0.1
+- add `iDialog`, `iDrawer`,  `iForm`, `iTable` Components
+
 <style>
 .latest {
   color: #42b983;

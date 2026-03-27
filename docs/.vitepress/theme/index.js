@@ -14,12 +14,16 @@ import iLayout from '../../../src/components/iLayout/index.vue'
 import iForm from '../../../src/components/iForm/index.vue'
 import iStepProgress from '../../../src/components/iStepProgress/index.vue'
 import iTable from '../../../src/components/iTableNext/index.vue'
+import iCalendar from '../../../src/components/iCalendar/index.vue'
+import iDatePicker from '../../../src/components/iDatePicker/index.vue'
+
 export default {
   ...DefaultTheme,
   enhanceApp(ctx) {
     DefaultTheme.enhanceApp(ctx)
     ctx.app.component('Demo', Demo)
     ctx.app.component('DemoBlock', DemoBlock)
+    ctx.app.component('iCalendar', iCalendar)
     ctx.app.component('iCollapse', iCollapse)
     ctx.app.component('iCard', iCard)
     ctx.app.component('iConfigProvider', iConfigProvider)
@@ -29,6 +33,7 @@ export default {
     ctx.app.component('iForm', iForm)
     ctx.app.component('iStepProgress', iStepProgress)
     ctx.app.component('iTable', iTable)
+    ctx.app.component('iDatePicker', iDatePicker)
     ctx.app.use(elementPlus)
   }
 }

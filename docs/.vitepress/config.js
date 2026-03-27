@@ -15,7 +15,7 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       // { text: 'Guide', link: '/guide/quick-start' },
-      { text: 'Components', link: '/components/iCard' },
+      { text: 'Components', link: '/components/iCalendar' },
     ],
 
     sidebar: {
@@ -27,9 +27,11 @@ export default defineConfig({
         ]
       }],
       '/components/': [
+        { text: 'Calendar', link: '/components/iCalendar' },
         { text: 'Card', link: '/components/iCard' },
         { text: 'Collapse', link: '/components/iCollapse' },
         { text: 'ConfigProvider', link: '/components/iConfigProvider' },
+        { text: 'DatePicker', link: '/components/iDatePicker' },
         { text: 'Dialog', link: '/components/iDialog' },
         { text: 'Drawer', link: '/components/iDrawer' },
         { text: 'Form', link: '/components/iForm' },
@@ -40,7 +42,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/Aurora-Ephemeral/iq-components' }
     ],
   },
   markdown: {

@@ -36,3 +36,16 @@ export function tansParams(params) {
   }
   return result
 }
+/**
+ * get number of calendar week based on ISO norm
+ * @param {String} date 
+ */
+export const getKW = (dateStr) => {
+  const parts = dateStr.split('-')
+  const date = new Date(parts[0], parts[1] - 1, parts[2])
+
+  // change date to Thursday in the same week
+  date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7)
+  // Calculate the number of weeks since the beginning of the year
+  return Math.ceil((((date - new Date(date.getFullYear(), 0, 1)) / 86400000) + 1) / 7)
+}
